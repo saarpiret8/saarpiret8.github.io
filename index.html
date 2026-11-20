@@ -24,6 +24,7 @@
 </main>
 <script>
 const API='https://nordapi.ee/api/v1/tallinn/transport/departures/12211-2';
+const CORS_PROXY='https://api.allorigins.win/raw?url=';
 const $=id=>document.getElementById(id);
 function getRows(j){const d=j?.data??j;return d?.departures??d?.items??d?.results??[]}
 function lineOf(x){const r=x.route??x.line??{};return String(x.route_short_name??x.line_number??x.routeNumber??r.short_name??r.route_short_name??r.number??'')}
@@ -31,7 +32,8 @@ function timeOf(x){const raw=x.expected_departure_time??x.expected_arrival_time?
 function directionOf(x){const r=x.route??x.line??{};return String(x.destination??x.headsign??x.direction??x.towards??r.long_name??'').toLowerCase()}
 function render(id,rows,num,keyword){const filtered=rows.filter(x=>lineOf(x)===num).filter(x=>{const d=directionOf(x);return !d||d.includes(keyword)}).map(timeOf).filter(Boolean);const unique=[...new Set(filtered)].slice(0,6);$(id).innerHTML=unique.length?unique.map(t=>`<span class="time">${escapeHtml(t)}</span>`).join(''):'<span class="empty">Praegu selle suuna väljumisi ei tagastatud.</span>'}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function update(){const s=$('status');s.className='status';s.textContent='Värskendan reaalaja väljumisi…';try{const res=await fetch(API+'?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const json=await res.json();const rows=getRows(json);if(!Array.isArray(rows)||!rows.length)throw Error('Väljumisi ei tagastatud');render('line60',rows,'60','seli');render('line63',rows,'63','priisle');s.className='status ok';s.textContent='Reaalajaandmed uuendatud';$('updated').textContent='Uuendatud '+new Date().toLocaleTimeString('et-EE',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Europe/Tallinn'});}catch(e){s.className='status error';s.textContent='Reaalaja väljumisi ei saanud laadida. Proovi uuesti või vaata Tallinna transpordi lehte.';for(const id of ['line60','line63'])$(id).innerHTML='<span class="empty">Värsked ajad pole praegu kättesaadavad.</span>';}}
+async function update(){const s=$('status');s.className='status';s.textContent='Värskendan reaalaja väljumisi…';try{const res=await fetch(CORS_PROXY+encodeURIComponent(API+'?v='+Date.now()),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const json=await res.json();const rows=getRows(json);if(!Array.isArray(rows)||!rows.length)throw Error('Väljumisi ei tagastatud');render('line60',rows,'60','seli');render('line63',rows,'63','priisle');s.className='status ok';s.textContent='Reaalajaandmed uuendatud';$('updated').textContent='Uuendatud '+new Date().toLocaleTimeString('et-EE',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Europe/Tallinn'});}catch(e){s.className='status error';s.textContent='Reaalaja väljumisi ei saanud laadida. Proovi uuesti või vaata Tallinna transpordi lehte.';for(const id of ['line60','line63'])$(id).innerHTML='<span class="empty">Värsked ajad pole praegu kättesaadavad.</span>';}}
 $('refresh').addEventListener('click',update);update();setInterval(update,30000);
 </script>
 </body></html>
+
