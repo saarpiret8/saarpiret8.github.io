@@ -3,36 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hobujaama reaalaja väljumised</title>
+  <title>Hobujaama bussid reaalajas</title>
   <style>
-    :root{color-scheme:light;--ink:#17324d;--muted:#64748b;--line:#e4eaf1;--paper:#f4f7fb}
+    :root{color-scheme:light;--ink:#17324d;--muted:#64748b;--line:#e4eaf1;--paper:#f4f7fb;--green:#23623c}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-    main{width:min(100%,620px)}h1{margin:0;font-size:clamp(1.65rem,5vw,2.2rem);letter-spacing:-.03em}.sub{margin:5px 0 18px;color:var(--muted)}
-    .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px 20px;margin:11px 0;box-shadow:0 7px 25px #17324d0b}.top{display:flex;justify-content:space-between;gap:10px;align-items:center}.name{font-size:1.1rem;font-weight:750}.dir{color:var(--muted)}.departures{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}.pill{background:#edf4fa;padding:8px 12px;border-radius:10px;font-size:1.08rem;font-weight:750}.pill small{font-weight:550;color:#526b82;font-size:.83rem}.empty{color:var(--muted);font-weight:500}.status{padding:11px 14px;border-radius:11px;background:#e9f6ee;color:#23623c;font-size:.9rem}.status.error{background:#fff2e6;color:#8c4b0c}.status.loading{background:#edf4fa;color:#526b82}footer{margin-top:15px;color:var(--muted);font-size:.86rem}a{color:#1769aa}button{border:0;border-radius:9px;background:#17324d;color:#fff;padding:9px 13px;font:inherit;cursor:pointer}.controls{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:12px}
+    main{width:min(100%,650px)}h1{margin:0;font-size:clamp(1.65rem,5vw,2.2rem);letter-spacing:-.03em}.sub{margin:5px 0 18px;color:var(--muted)}
+    .status{padding:11px 14px;border-radius:11px;background:#edf4fa;color:#526b82;font-size:.91rem}.status.ok{background:#e9f6ee;color:var(--green)}.status.error{background:#fff2e6;color:#8c4b0c}
+    .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px 20px;margin:11px 0;box-shadow:0 7px 25px #17324d0b}.top{display:flex;justify-content:space-between;gap:10px;align-items:center}.name{font-size:1.1rem;font-weight:750}.dir{color:var(--muted)}.content{margin-top:11px}.vehicle{padding:9px 11px;background:#edf4fa;border-radius:10px;margin:6px 0}.empty{color:var(--muted)}.controls{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:13px;color:var(--muted);font-size:.9rem}button{border:0;border-radius:9px;background:#17324d;color:#fff;padding:9px 13px;font:inherit;cursor:pointer}footer{margin-top:16px;color:var(--muted);font-size:.86rem}a{color:#1769aa}
     @media(max-width:420px){body{padding:15px}.card{padding:15px}.top{align-items:flex-start;flex-direction:column;gap:0}}
   </style>
 </head>
 <body><main>
-  <h1>Hobujaama bussid</h1>
-  <p class="sub">Järgmised väljumised Seli ja Priisle suunal</p>
-  <div id="status" class="status loading" role="status">Laen reaalaja väljumisi…</div>
-  <section class="card"><div class="top"><div class="name">Buss 60</div><div class="dir">Seli suunal</div></div><div id="route60" class="departures"><span class="empty">Andmete laadimine…</span></div></section>
-  <section class="card"><div class="top"><div class="name">Buss 63</div><div class="dir">Priisle suunal</div></div><div id="route63" class="departures"><span class="empty">Andmete laadimine…</span></div></section>
-  <div class="controls"><span id="updated" class="sub" style="margin:0">—</span><button id="refresh" type="button">Värskenda</button></div>
-  <footer>Värskendan andmeid iga 30 sekundi järel. Katleri aeg lisandub, kui reaalajaandmestik annab selle liini kohta järgmise peatuse ennustuse; muul juhul näitan väljumisaega ja graafikujärgset Katleri aega.<br><a href="https://transport.tallinn.ee/#bus/60/b-a/12211-2">Tallinna transport: buss 60</a> · <a href="https://transport.tallinn.ee/#bus/63/b-a/12211-2">buss 63</a></footer>
+  <h1>Hobujaama bussid reaalajas</h1>
+  <p class="sub">Liinide 60 (Seli) ja 63 (Priisle) hetkeinfo</p>
+  <div id="status" class="status">Laen Tallinna ühissõidukite asukohti…</div>
+  <section class="card"><div class="top"><div class="name">Buss 60</div><div class="dir">Seli suunal</div></div><div id="line60" class="content"><span class="empty">Laadimine…</span></div></section>
+  <section class="card"><div class="top"><div class="name">Buss 63</div><div class="dir">Priisle suunal</div></div><div id="line63" class="content"><span class="empty">Laadimine…</span></div></section>
+  <div class="controls"><span id="updated">—</span><button id="refresh" type="button">Värskenda</button></div>
+  <footer>Andmed pärinevad <a href="https://andmed.eesti.ee/datasets/uhistranspordivahendite-asukohad-reaalajas">Eesti avaandmete reaalajaandmestikust</a> (Tallinna sõidukite GPS-voog). See voog näitab sõidukite asukohti ja sihtsuunda, mitte peatuse väljumis- ega saabumisennustusi. Hobujaama või Katleri saabumisaega ei arvutata siin oletuslikult.<br><a href="https://transport.tallinn.ee/#bus/60/b-a/12211-2">Ametlik liin 60</a> · <a href="https://transport.tallinn.ee/#bus/63/b-a/12211-2">Ametlik liin 63</a></footer>
 </main>
 <script>
-const API='https://nordapi.ee/api/v1/tallinn/transport/departures/';
-const stops={hobujaama:'12211-2',katleri60:'17102-1',katleri63:'17102-1'};
+const FEED='https://transport.tallinn.ee/gps.txt';
 const $=id=>document.getElementById(id);
-function listFrom(json){const d=json?.data??json;return d?.departures??d?.items??d?.results??[]}
-function routeNumber(x){const r=x.route??x.line??x;return String(r.short_name??r.route_short_name??r.number??x.line_number??x.route_short_name??'').trim()}
-function direction(x){return String(x.destination??x.headsign??x.direction??x.towards??x.destination_name??'')}
-function timeText(x){const raw=x.expected_departure_time??x.expected_arrival_time??x.departure_time??x.aimed_departure_time??x.scheduled_departure_time??x.time??x.expected??'';if(!raw)return '';const d=new Date(raw);return Number.isNaN(d.getTime())?String(raw):d.toLocaleTimeString('et-EE',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Tallinn'})}
-function minutesUntil(x){const raw=x.expected_departure_time??x.expected_arrival_time??x.departure_time??x.aimed_departure_time??x.scheduled_departure_time??x.time;const d=new Date(raw);return Number.isNaN(d.getTime())?null:Math.max(0,Math.round((d-Date.now())/60000))}
-function arrivalFor(x, route){const candidates=[x.next_stop,x.nextStop,x.subsequent_call,x.katleri,x.arrival_at_katleri,x.stops?.find?.(s=>String(s.stop_name??s.name??'').toLowerCase().includes('katleri'))];for(const c of candidates){if(typeof c==='string'&&c.includes(':'))return c.slice(0,5);if(c){const n=c.expected_arrival_time??c.expected_departure_time??c.time;if(n){const d=new Date(n);return Number.isNaN(d.getTime())?String(n):d.toLocaleTimeString('et-EE',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Tallinn'})}}}const m=minutesUntil(x);return m===null?'':new Date(Date.now()+(m+12)*60000).toLocaleTimeString('et-EE',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Tallinn'})}
-function render(id,rows,route){const target=$(id);const selected=rows.filter(x=>routeNumber(x)===route).filter(x=>{const d=direction(x).toLowerCase();return !d||d.includes(route==='60'?'seli':'priisle')}).slice(0,5);if(!selected.length){target.innerHTML='<span class="empty">Selle liini reaalaja väljumisi praegu ei leitud.</span>';return}target.innerHTML=selected.map(x=>{const t=timeText(x),a=arrivalFor(x,route);return `<span class="pill">${t||'—'}${a?` <small>· Katleri ${a}</small>`:''}</span>`}).join('')}
-async function update(){const s=$('status');s.className='status loading';s.textContent='Värskendan reaalajaandmeid…';try{const [live,kat]=await Promise.all([fetch(API+stops.hobujaama,{cache:'no-store'}),fetch(API+stops.katleri60,{cache:'no-store'})]);if(!live.ok||!kat.ok)throw new Error('Päring ebaõnnestus');const [j,k]=await Promise.all([live.json(),kat.json()]);const rows=listFrom(j);if(!rows.length)throw new Error('Andmeallikas ei tagastanud väljumisi');render('route60',rows,'60');render('route63',rows,'63');s.className='status';s.textContent='Reaalajaandmed uuendatud';$('updated').textContent='Uuendatud '+new Date().toLocaleTimeString('et-EE',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Europe/Tallinn'}); }catch(e){s.className='status error';s.textContent='Reaalajaandmeid ei õnnestunud laadida. Kontrolli internetiühendust ja ava Tallinna transpordi leht.';for(const id of ['route60','route63'])$(id).innerHTML='<span class="empty">Hetkel värskeid aegu ei saa kuvada.</span>';}}
-$('refresh').addEventListener('click',update);update();setInterval(update,30000);
+function parseCSV(text){return text.trim().split(/\r?\n/).map(line=>line.split(',').map(s=>s.trim())).filter(c=>c.length>=10)}
+function showLine(id,rows,line){const matches=rows.filter(c=>c[1]===line);const el=$(id);if(!matches.length){el.innerHTML='<span class="empty">Selle liini sõidukit pole praegu voo nimekirjas.</span>';return}
+ el.innerHTML=matches.map(c=>{const lat=(Number(c[3])/1000000).toFixed(5),lon=(Number(c[2])/1000000).toFixed(5),dest=c[9]||'Sihtkoht puudub',bearing=c[5]||'—',vehicle=c[6]||'—',speed=c[8]||'—';return `<div class="vehicle"><b>Siht: ${escapeHtml(dest)}</b><br>Sõiduk ${escapeHtml(vehicle)} · kiirus ${escapeHtml(speed)} km/h · suund ${escapeHtml(bearing)}°<br><small>Asukoht: ${lat}, ${lon}</small></div>`}).join('')}
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function update(){const status=$('status');status.className='status';status.textContent='Uuendan GPS-andmeid…';try{const res=await fetch(FEED+'?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('HTTP '+res.status);const rows=parseCSV(await res.text());if(!rows.length)throw new Error('Andmevoog oli tühi');showLine('line60',rows,'60');showLine('line63',rows,'63');status.className='status ok';status.textContent='Tallinna reaalaja GPS-voog on ühendatud';$('updated').textContent='Andmeid uuendati '+new Date().toLocaleTimeString('et-EE',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Europe/Tallinn'});}catch(e){status.className='status error';status.textContent='GPS-voogu ei saanud laadida. Ava leht internetiühendusega; brauser võib kohaliku HTML-faili päringuid piirata.';for(const id of ['line60','line63'])$(id).innerHTML='<span class="empty">Värskeid sõidukiandmeid pole käes.</span>';}}
+$('refresh').addEventListener('click',update);update();setInterval(update,15000);
 </script>
 </body></html>
