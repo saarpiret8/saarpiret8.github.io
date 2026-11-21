@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bussid 60 ja 63 · Hobujaama – Katleri</title>
+  <title>Hobujaama busside järgmised väljumised</title>
   <style>
     :root{color-scheme:light;--ink:#18324b;--muted:#617487;--line:#dfe7ef;--bg:#f3f7fb;--blue:#155c9b;--green:#18734b}
     *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1440px;margin:0 auto;padding:16px 32px 40px}h1{margin:0;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.035em}.sub{margin:7px 0 18px;color:var(--muted);font-size:1.15rem}
@@ -13,15 +13,14 @@
 </head>
 <body>
 <main>
-  <h1>Hobujaama väljumised reaalajas</h1>
+  <h1>Hobujaama järgmised väljumised</h1>
   <p class="sub">Bussid 60 Seli suunal ja 63 Priisle suunal</p>
   <section class="status" aria-live="polite"><strong id="clock">Tallinna aeg —</strong><span class="badge" id="dayType">Sõiduplaan —</span><span id="date"></span></section>
   <div class="panels">
     <section class="panel"><div class="panelhead"><strong>Buss 60 · Seli suund</strong><span>Hobujaama → Katleri</span></div><div id="departures60" aria-live="polite"></div></section>
     <section class="panel"><div class="panelhead"><strong>Buss 63 · Priisle suund</strong><span>Hobujaama → Katleri</span></div><div id="departures63" aria-live="polite"></div></section>
   </div>
-  <p class="note">Väljumis- ja saabumisajad pärinevad sinu lisatud sõiduplaanipiltidelt. Tänane graafik ja väljumiste loendur uuenevad Tallinna kohaliku kella järgi. Kuvatud on sõiduplaan, mitte GPS-põhised hilinemised.</p>
-  <p class="source"><a href="https://transport.tallinn.ee/#bus/60/b-a/12211-2" target="_blank" rel="noopener">Ametlik buss 60 vaade</a> · <a href="https://transport.tallinn.ee/#bus/63/b-a/12211-2" target="_blank" rel="noopener">Ametlik buss 63 vaade</a></p>
+  <p class="note">Väljumis- ja Katleri saabumisajad on võetud sinu lisatud sõiduplaanipiltidelt. Vaade valib Tallinna kohaliku päeva järgi tööpäeva või nädalavahetuse tabeli ning kuvab kellaajale järgnevad väljumised. See leht ei laadi andmeid transport.tallinn.ee-st ega kasuta GPS-hilinemisi.</p>
 </main>
 <script>
 const zone='Europe/Tallinn';
