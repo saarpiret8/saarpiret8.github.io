@@ -6,15 +6,15 @@
   <title>Bussid 60 ja 63 · Hobujaama – Katleri</title>
   <style>
     :root{color-scheme:light;--ink:#18324b;--muted:#617487;--line:#dfe7ef;--bg:#f3f7fb;--blue:#155c9b;--green:#18734b}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:24px 16px 40px}h1{margin:0;font-size:clamp(1.55rem,5vw,2.1rem);letter-spacing:-.03em}.sub{margin:5px 0 18px;color:var(--muted)}
-    .status{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:14px 16px;border-radius:14px;background:#e5eff7;margin-bottom:16px}.status strong{font-size:1.08rem}.badge{font-weight:700}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px #18324b0b}.panelhead{padding:17px 18px;border-bottom:1px solid var(--line)}.panelhead strong{font-size:1.16rem}.panelhead span{display:block;color:var(--muted)}
-    .panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.times{font-variant-numeric:tabular-nums}.departure{font-size:1.15rem;font-weight:750}.arrival{color:var(--muted);margin-left:8px}.count{font-size:.88rem;color:var(--green);font-weight:700;text-align:right}.empty{padding:20px;color:var(--muted)}.note{font-size:.9rem;color:var(--muted);margin:15px 2px}.source{margin-top:16px}a{color:var(--blue)}@media(max-width:700px){.panels{grid-template-columns:1fr}}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1440px;margin:0 auto;padding:16px 32px 40px}h1{margin:0;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.035em}.sub{margin:7px 0 18px;color:var(--muted);font-size:1.15rem}
+    .status{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;padding:16px 20px;border-radius:16px;background:#e5eff7;margin-bottom:20px}.status strong{font-size:1.2rem}.badge{font-weight:700}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 24px #18324b0b}.panelhead{padding:19px 22px 15px;border-bottom:1px solid var(--line)}.panelhead strong{font-size:1.3rem}.panelhead span{display:block;color:var(--muted);font-size:1.1rem}
+    .panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:12px 22px;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.times{font-variant-numeric:tabular-nums}.departure{font-size:1.15rem;font-weight:750}.arrival{color:var(--muted);margin-left:8px}.count{font-size:.88rem;color:var(--green);font-weight:700;text-align:right}.empty{padding:20px;color:var(--muted)}.note{font-size:.9rem;color:var(--muted);margin:15px 2px}.source{margin-top:16px}a{color:var(--blue)}@media(max-width:700px){main{padding:18px 16px 32px}.panels{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 <main>
-  <h1>Hobujaama bussid 60 ja 63</h1>
-  <p class="sub">Väljumised ning sama reisi saabumisaeg Katleri peatusesse</p>
+  <h1>Hobujaama väljumised reaalajas</h1>
+  <p class="sub">Bussid 60 Seli suunal ja 63 Priisle suunal</p>
   <section class="status" aria-live="polite"><strong id="clock">Tallinna aeg —</strong><span class="badge" id="dayType">Sõiduplaan —</span><span id="date"></span></section>
   <div class="panels">
     <section class="panel"><div class="panelhead"><strong>Buss 60 · Seli suund</strong><span>Hobujaama → Katleri</span></div><div id="departures60" aria-live="polite"></div></section>
