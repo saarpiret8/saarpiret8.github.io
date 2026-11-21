@@ -3,46 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hobujaama bussid · reaalajas</title>
+  <title>Bussid 60 ja 63 · Hobujaama – Katleri</title>
   <style>
-    :root{color-scheme:light;--ink:#17324d;--muted:#64748b;--line:#e4eaf1;--paper:#f4f7fb;--accent:#1769aa}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-    main{max-width:1120px;margin:auto;padding:24px}h1{margin:0;font-size:clamp(1.6rem,5vw,2.15rem);letter-spacing:-.03em}.intro{margin:5px 0 16px;color:var(--muted)}
-    .now{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:13px 16px;margin-bottom:16px;border-radius:13px;background:#e8f1f8}.now strong{font-size:1.12rem}.day{font-weight:700}.hint{color:var(--muted);font-size:.9rem}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{overflow:hidden;background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 7px 25px #17324d0b}.head{padding:15px 18px 12px}.route{font-weight:750;font-size:1.12rem}.dir{color:var(--muted)}iframe{display:block;width:100%;height:650px;border:0;border-top:1px solid var(--line);background:#fff}.links{padding:11px 18px;border-top:1px solid var(--line);font-size:.9rem}a{color:var(--accent)}.note{margin:15px 2px 0;color:var(--muted);font-size:.88rem}
-    @media(max-width:760px){main{padding:16px}.grid{grid-template-columns:1fr}iframe{height:620px}}
+    :root{color-scheme:light;--ink:#18324b;--muted:#617487;--line:#dfe7ef;--bg:#f3f7fb;--blue:#155c9b;--green:#18734b}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:760px;margin:0 auto;padding:24px 16px 40px}h1{margin:0;font-size:clamp(1.55rem,5vw,2.1rem);letter-spacing:-.03em}.sub{margin:5px 0 18px;color:var(--muted)}
+    .status{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:14px 16px;border-radius:14px;background:#e5eff7;margin-bottom:16px}.status strong{font-size:1.08rem}.badge{font-weight:700}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px #18324b0b}.panelhead{padding:17px 18px;border-bottom:1px solid var(--line)}.panelhead strong{font-size:1.16rem}.panelhead span{display:block;color:var(--muted)}
+    .panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.times{font-variant-numeric:tabular-nums}.departure{font-size:1.15rem;font-weight:750}.arrival{color:var(--muted);margin-left:8px}.count{font-size:.88rem;color:var(--green);font-weight:700;text-align:right}.empty{padding:20px;color:var(--muted)}.note{font-size:.9rem;color:var(--muted);margin:15px 2px}.source{margin-top:16px}a{color:var(--blue)}@media(max-width:700px){.panels{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 <main>
-  <h1>Hobujaama väljumised reaalajas</h1>
-  <p class="intro">Bussid 60 Seli suunal ja 63 Priisle suunal</p>
-  <section class="now" aria-live="polite">
-    <strong id="clock">Tallinna aeg —</strong>
-    <span class="day" id="dayType">Sõiduplaan —</span>
-    <span class="hint" id="date"></span>
-  </section>
-  <div class="grid">
-    <section class="card">
-      <div class="head"><div class="route">Buss 60</div><div class="dir">Hobujaama → Seli</div></div>
-      <iframe title="Buss 60 Hobujaama reaalaja väljumised" src="https://transport.tallinn.ee/#bus/60/b-a/12211-2" loading="eager"></iframe>
-      <div class="links"><a href="https://transport.tallinn.ee/#bus/60/b-a/12211-2" target="_blank" rel="noopener">Ava liini 60 väljumised</a> · <a href="https://transport.tallinn.ee/#bus/60/b-a/17102-1" target="_blank" rel="noopener">Katleri peatus</a></div>
-    </section>
-    <section class="card">
-      <div class="head"><div class="route">Buss 63</div><div class="dir">Hobujaama → Priisle</div></div>
-      <iframe title="Buss 63 Hobujaama reaalaja väljumised" src="https://transport.tallinn.ee/#bus/63/b-a/12211-2" loading="eager"></iframe>
-      <div class="links"><a href="https://transport.tallinn.ee/#bus/63/b-a/12211-2" target="_blank" rel="noopener">Ava liini 63 väljumised</a> · <a href="https://transport.tallinn.ee/#bus/63/b-a/17102-1" target="_blank" rel="noopener">Katleri peatus</a></div>
-    </section>
+  <h1>Hobujaama bussid 60 ja 63</h1>
+  <p class="sub">Väljumised ning sama reisi saabumisaeg Katleri peatusesse</p>
+  <section class="status" aria-live="polite"><strong id="clock">Tallinna aeg —</strong><span class="badge" id="dayType">Sõiduplaan —</span><span id="date"></span></section>
+  <div class="panels">
+    <section class="panel"><div class="panelhead"><strong>Buss 60 · Seli suund</strong><span>Hobujaama → Katleri</span></div><div id="departures60" aria-live="polite"></div></section>
+    <section class="panel"><div class="panelhead"><strong>Buss 63 · Priisle suund</strong><span>Hobujaama → Katleri</span></div><div id="departures63" aria-live="polite"></div></section>
   </div>
-  <p class="note">Ametlik liinileht arvestab väljumiste loendis Tallinna reaalaja minutite ja kehtiva päeva sõiduplaaniga. Katleri saabumisaja nägemiseks vali liinilehel konkreetne väljumine. Riigipühal võib kehtida pühapäevane graafik. Liinilehtede sisu värskendamiseks laadi leht uuesti.</p>
+  <p class="note">Väljumis- ja saabumisajad pärinevad sinu lisatud sõiduplaanipiltidelt. Tänane graafik ja väljumiste loendur uuenevad Tallinna kohaliku kella järgi. Kuvatud on sõiduplaan, mitte GPS-põhised hilinemised.</p>
+  <p class="source"><a href="https://transport.tallinn.ee/#bus/60/b-a/12211-2" target="_blank" rel="noopener">Ametlik buss 60 vaade</a> · <a href="https://transport.tallinn.ee/#bus/63/b-a/12211-2" target="_blank" rel="noopener">Ametlik buss 63 vaade</a></p>
 </main>
 <script>
 const zone='Europe/Tallinn';
-function parts(d){return Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(d).filter(p=>p.type!=='literal').map(p=>[p.type,p.value]))}
-function easterSunday(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),month=Math.floor((h+l-7*m+114)/31),day=((h+l-7*m+114)%31)+1;return `${y}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`}
-function holidayName(ymd,y){const fixed={'01-01':'uusaasta','02-24':'iseseisvuspäev','05-01':'kevadpüha','06-23':'võidupüha','06-24':' jaanipäev','08-20':'taasiseseisvumispäev','12-24':'jõululaupäev','12-25':'esimene jõulupüha','12-26':'teine jõulupüha'};const md=ymd.slice(5);if(fixed[md])return fixed[md].trim();const easter=easterSunday(y);if(ymd===easter)return 'ülestõusmispühade 1. püha';const easterDate=new Date(`${easter}T12:00:00Z`);easterDate.setUTCDate(easterDate.getUTCDate()-2);if(ymd===easterDate.toISOString().slice(0,10))return 'suur reede';const pent=new Date(`${easter}T12:00:00Z`);pent.setUTCDate(pent.getUTCDate()+49);if(ymd===pent.toISOString().slice(0,10))return 'nelipühade 1. püha';return ''}
-function updateClock(){const now=new Date(),p=parts(now),ymd=`${p.year}-${p.month}-${p.day}`,weekday=p.weekday;const holiday=holidayName(ymd,Number(p.year));$('clock').textContent=`Tallinna aeg ${p.hour}:${p.minute}:${p.second}`;$('date').textContent=`${p.day}.${p.month}.${p.year}`;let label;if(holiday)label=`Riigipüha: ${holiday} · pühapäevane graafik`;else if(weekday==='Sat')label='Laupäevane sõiduplaan';else if(weekday==='Sun')label='Pühapäevane sõiduplaan';else label='Tööpäeva sõiduplaan';$('dayType').textContent=label}
-function $(id){return document.getElementById(id)}updateClock();setInterval(updateClock,1000);
+// Pilt 1: Hobujaama väljumised. Pilt 2: Katleri saabumised; reisid on järjestatud samas järjekorras.
+const timetable63={
+  weekday:{
+    dep:{5:'32 51',6:'11 31 48',7:'05 23 43',8:'05 23 41 59',9:'22 45',10:'07 31 55',11:'17 39 58',12:'19 38 58',13:'18 38 56',14:'16 35 53',15:'13 31 51',16:'11 31 51',17:'11 32 54',18:'14 36',19:'00 23 47',20:'09 31 52',21:'12 33 53',22:'13 33 55',23:'18 42'},
+    arr:{5:'44',6:'03 23 43',7:'02 19 37 57',8:'19 37 55',9:'13 36 59',10:'21 45',11:'09 31 53',12:'12 33 52',13:'12 32 52',14:'12 32 51',15:'09 29 47',16:'07 28 48',17:'08 28 49',18:'11 31 51',19:'15 38',20:'02 24 46',21:'07 26 47',22:'07 26 46',23:'08 31 55'}
+  },
+  weekend:{
+    dep:{6:'24 52',7:'14 36 59',8:'23 47',9:'13 39',10:'07 37',11:'06 35',12:'01 27 52',13:'17 42',14:'07 33 59',15:'25 48',16:'14 40',17:'06 33',18:'00 26 55',19:'24 54',20:'24 52',21:'17 44',22:'09 34 59',23:'24 46'},
+    arr:{6:'36',7:'04 26 48',8:'12 36',9:'00 26 53',10:'21 51',11:'20 49',12:'15 41',13:'06 31 56',14:'21 47',15:'13 39',16:'03 29 55',17:'21 48',18:'15 41',19:'10 39',20:'09 39',21:'07 32 59',22:'22 47',23:'11 36 58'}
+  }
+};
+const timetable60={
+  weekday:{
+    dep:{5:'22 42',6:'00 20 38 56',7:'14 32 54',8:'14 32 50',9:'12 34 56',10:'18 44',11:'06 28 50',12:'10 28 48',13:'08 28 46',14:'06 26 44',15:'03 22 41',16:'01 21 41',17:'01 21 43',18:'04 25 48',19:'12 35 58',20:'19 41',21:'04 22 43',22:'03 23 44',23:'06 28 56'},
+    arr:{5:'34 54',6:'13 33 52',7:'10 28 46',8:'08 28 46',9:'04 26 48',10:'10 32 58',11:'20 42',12:'04 24 42',13:'02 22 42',14:'00 20 40 58',15:'17 36 58',16:'18 38 58',17:'18 38',18:'00 20 41',19:'04 28 51',20:'14 34 56',21:'19 37 58',22:'18 38 57',23:'19 41',24:'08'}
+  },
+  weekend:{
+    dep:{5:'31 51',6:'14 38',7:'03 25 48',8:'11 35 59',9:'27 56',10:'26 55',11:'23 46',12:'14 38',13:'03 29 53',14:'20 45',15:'11 36',16:'02 28 53',17:'19 46',18:'14 44',19:'16 43',20:'10 38',21:'05 32 57',22:'22 47',23:'12 37'},
+    arr:{5:'43',6:'03 26 50',7:'15 37',8:'02 25 49',9:'13 41',10:'10 40',11:'09 38',12:'01 29 53',13:'18 44',14:'08 35',15:'00 26 51',16:'17 43',17:'08 34',18:'01 29 58',19:'30 57',20:'24 52',21:'19 45',22:'10 34 59',23:'24 49'}
+  }
+};
+function tallinnParts(date){return Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(date).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]))}
+function easterSunday(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),day=(h+l-7*m+114)%31+1;return `${y}-${String(mo).padStart(2,'0')}-${String(day).padStart(2,'0')}`}
+function isEstonianHoliday(ymd,y){const fixed=['01-01','02-24','05-01','06-23','06-24','08-20','12-24','12-25','12-26'];if(fixed.includes(ymd.slice(5)))return true;const easter=easterSunday(y);if(ymd===easter)return true;const d=new Date(easter+'T12:00:00Z');d.setUTCDate(d.getUTCDate()-2);if(ymd===d.toISOString().slice(0,10))return true;d.setTime(new Date(easter+'T12:00:00Z').getTime());d.setUTCDate(d.getUTCDate()+49);return ymd===d.toISOString().slice(0,10)}
+function parseEntries(source){const result=[];for(const [hour,minutes] of Object.entries(source))for(const minute of minutes.split(' '))result.push({h:Number(hour),m:Number(minute)});return result.sort((a,b)=>a.h*60+a.m-(b.h*60+b.m))}
+function mins(x){return x.h*60+x.m}function fmt(x){return `${String(x.h%24).padStart(2,'0')}:${String(x.m).padStart(2,'0')}`}
+function showDepartures(routeTable,target,minuteNow,weekend){const table=weekend?routeTable.weekend:routeTable.weekday,dep=parseEntries(table.dep),arr=parseEntries(table.arr),upcoming=[];for(let i=0;i<dep.length;i++)if(mins(dep[i])>=minuteNow)upcoming.push({d:dep[i],a:arr[i]});const host=document.getElementById(target);if(!upcoming.length){host.innerHTML='<div class="empty">Tänased väljumised on lõppenud.</div>';return}host.innerHTML=upcoming.slice(0,14).map(({d,a})=>{const wait=mins(d)-minuteNow,label=wait===0?'väljub nüüd':`u ${wait} min`;return `<div class="row"><div class="times"><span class="departure">${fmt(d)}</span><span class="arrival">Katleri ${fmt(a)}</span></div><span class="count">${label}</span></div>`}).join('')}
+function update(){const now=new Date(),p=tallinnParts(now),ymd=`${p.year}-${p.month}-${p.day}`,holiday=isEstonianHoliday(ymd,Number(p.year)),weekend=holiday||p.weekday==='Sat'||p.weekday==='Sun',minuteNow=Number(p.hour)*60+Number(p.minute);document.getElementById('clock').textContent=`Tallinna aeg ${p.hour}:${p.minute}:${p.second}`;document.getElementById('date').textContent=`${p.day}.${p.month}.${p.year}`;
+  if(holiday)document.getElementById('dayType').textContent='Riigipüha · nädalavahetuse graafik';else if(p.weekday==='Sat')document.getElementById('dayType').textContent='Laupäev';else if(p.weekday==='Sun')document.getElementById('dayType').textContent='Pühapäev';else document.getElementById('dayType').textContent='Tööpäev';
+  showDepartures(timetable60,'departures60',minuteNow,weekend);showDepartures(timetable63,'departures63',minuteNow,weekend)}
+update();setInterval(update,1000);
 </script>
 </body>
 </html>
